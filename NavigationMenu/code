@@ -1,0 +1,118 @@
+HTML
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Menu Bar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <label class="logo">Forest</label>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">services</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Feedback</a></li>
+        </ul>
+    </nav>
+    <div class="sec1"></div>
+    <h1>About Section</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur ratione voluptatibus possimus tempora aspernatur? Repellendus modi nostrum minus nam, hic sequi vel accusamus quibusdam laboriosam itaque? Atque mollitia vel reprehenderit, nemo totam vero, impedit repudiandae numquam molestias quisquam necessitatibus neque similique odit esse consectetur, tenetur unde pariatur ab ad laudantium veritatis tempora recusandae? Iste, blanditiis veritatis cupiditate, fugiat porro amet voluptate officiis provident illo a animi reiciendis et quaerat dolore. Totam earum quam corporis repellendus excepturi nisi aut distinctio alias cum hic odio, pariatur molestiae recusandae libero quis, assumenda similique ipsa! Debitis sed cumque eaque animi possimus corrupti esse dignissimos blanditiis fugit architecto voluptates praesentium, nostrum aut perferendis sunt sint vel inventore hic, sit tempora impedit. Temporibus repellat id eaque ipsum totam perspiciatis mollitia hic non voluptates quisquam eos aut quidem natus autem in debitis quasi, molestiae minus laboriosam iure? Culpa sint fugiat esse distinctio libero molestiae hic, aliquid cupiditate velit asperiores, ipsam laboriosam eos quasi beatae. Esse cumque quia molestiae dicta quo quasi inventore necessitatibus nemo nobis provident quidem, fugit magni porro. Accusantium consectetur non autem maiores omnis incidunt ut nam sed iusto, vel doloremque quis labore libero velit reiciendis sint, deserunt est architecto corrupti commodi ipsum repudiandae. Obcaecati nihil molestiae sint esse nisi ullam assumenda amet iusto. Nulla quaerat corrupti quod cumque vero ipsam voluptatem vitae fugiat. Sunt provident adipisci nam nulla error, veritatis animi, rerum laudantium impedit veniam sapiente odio at fuga cum et alias quae. Est aut repellendus fugiat libero alias officiis reprehenderit, corporis soluta, facilis quia consequuntur dolores praesentium veniam, nemo qui molestiae sint quidem. Ipsa numquam beatae totam illum doloremque architecto aut, dolores voluptatum laboriosam omnis fuga ea commodi quia perspiciatis veniam exercitationem recusandae nobis deleniti, est amet sapiente culpa aperiam. Recusandae amet aperiam eaque ex, mollitia sed placeat aut similique accusamus aliquam est.</p>
+    <div class="sec2"></div>
+    <h1>Service Section</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolor deleniti alias unde recusandae ex quod deserunt earum, fugiat dicta? Quas facere nihil quis consequatur dicta dignissimos aliquam autem excepturi magni illum. Ab, suscipit. At quia labore aliquam quasi laudantium aspernatur quas, quam sit repellat exercitationem reiciendis necessitatibus ipsum voluptate ullam est! Ex, nobis impedit expedita rerum sunt voluptate error quis voluptas placeat, itaque enim rem in veritatis dolor aspernatur distinctio esse corporis. Inventore laborum nisi aspernatur sint ducimus modi, repudiandae itaque pariatur, quas error dolores aliquam fugiat, voluptatem corporis qui placeat maiores eligendi. Reprehenderit beatae ad maiores numquam nobis harum tempore dolore! Ab, hic provident ipsam nihil officiis non necessitatibus? Cumque eligendi eveniet minus voluptate aut nihil libero, officia ipsum? Incidunt asperiores quidem dolores eligendi ad facilis expedita unde modi repellendus labore rerum quo cumque similique quam, explicabo quisquam neque eius consequatur numquam vitae ea! Nihil ex, molestias reprehenderit dolorum molestiae expedita architecto laudantium veritatis? Sed consequatur, cupiditate nihil, ea blanditiis, eius deserunt corrupti mollitia natus incidunt harum beatae illum hic similique! Veritatis ratione alias ab iusto perspiciatis, voluptatum fugiat quisquam? Tempore amet consequatur esse culpa repellendus optio quia provident, libero, porro molestias quisquam eaque. Dolor modi sed quidem.</p>
+    <script>
+        var scroll1 = window.pageYOffset;
+        window.onscroll = function(){
+            var scroll2 = window.pageXOffset;
+            if (scroll1 > scroll2){
+                document.querySelector('nav').style.top = "0";
+            }else{
+                document.querySelector('nav').style.top = "-100px";
+            }
+            scroll1=scroll2;
+        }
+    </script>
+</body>
+</html>
+
+
+CSS
+
+
+
+
+      *{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+body{
+    font-family: sans-serif;
+}
+nav{
+    position: fixed;
+    height: 80px;
+    width: 100%;
+    background: #21680d;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, .3);
+}
+nav .logo{
+    font-size: 35px;
+    color: white;
+    font-weight: bold;
+    line-height: 80px;
+    padding-left: 100px;
+    transition: all .3s;
+}
+nav ul{
+    float: right;
+    margin-right: 50px;
+}
+
+nav ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 0 15px;
+    line-height: 80px;
+}
+
+nav ul li a{
+    color: #d8d6f5;
+    font-size: 20px;
+    font-weight: 600;
+}
+li a:hover{
+    color: #786edd;
+    transition: 0.5s;
+}
+.sec1{
+    background: url(body.jpg) no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+.sec2{
+    background: url(bg.jpg) no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+h1{
+    font-size: 40px;
+    padding: 20px 0 10px 20px;
+}
+
+p{
+    font-size: 20px;
+    padding:  0 20px 0 20px;
+}
+
+
+
+
+
+
