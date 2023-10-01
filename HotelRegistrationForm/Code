@@ -1,0 +1,207 @@
+HTML
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hotel Booking Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Hotel Booking Registration Form</h1>
+    <form id="bookingForm">
+        <!-- Customer Info -->
+        <h2>Customer Info</h2>
+        <label for="customerName">Customer Name:</label>
+        <input type="text" id="customerName" required><br><br>
+
+        <label for="checkInDate">Check-in Date:</label>
+        <input type="date" id="checkInDate" required><br><br>
+
+        <label for="totalDays">Total No of Days:</label>
+        <input type="number" id="totalDays" required><br><br>
+
+        <label for="totalPersons">Total No of Persons:</label>
+        <input type="number" id="totalPersons" required><br><br>
+
+        <!-- Room Information -->
+        <h2>Room Information</h2>
+        <label for="roomType">Room Type:</label>
+        <select id="roomType">
+            <option value="Delux Room">Delux Room</option>
+            <option value="Suite Room">Suite Room</option>
+        </select><br><br>
+
+        <label for="amenities">Amenities:</label>
+        <select id="amenities" multiple>
+            <option value="AC">AC</option>
+            <option value="Locker">Locker</option>
+        </select><br><br>
+
+        <!-- Advance Payment -->
+        <h2>Advance Payment</h2>
+        <label for="advanceAmount">Advance Amount:</label>
+        <input type="number" id="advanceAmount" required><br><br>
+
+        <!-- Balance Amount -->
+        <h2>Balance Amount</h2>
+        <label for="balance">Balance:</label>
+        <input type="text" id="balance" disabled><br><br>
+
+        <!-- Total Cost Calculation -->
+        <h2>Total Cost Calculation</h2>
+        <label for="totalRoomCost">Total Room Cost:</label>
+        <input type="text" id="totalRoomCost" disabled><br><br>
+
+        <label for="totalAmenitiesCost">Total Amenities Cost:</label>
+        <input type="text" id="totalAmenitiesCost" disabled><br><br>
+
+        <!-- Additional Charges -->
+        <h2>Additional Charges</h2>
+        <p>Upto 2 People: No Change in Cost</p>
+        <label for="extraPersonCost">Per Day Cost for Extra Person:</label>
+        <input type="number" id="extraPersonCost" value="1000"><br><br>
+
+        <label for="totalCost">Total Cost:</label>
+        <input type="text" id="totalCost" disabled><br><br>
+
+        <input type="submit" value="Calculate">
+    </form>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+
+
+
+CSS
+
+
+/* Body and Form Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Label and Input Styles */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+/* Button Styles */
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Disabled Input Styles */
+input[disabled] {
+    background-color: #daf1cf;
+    color: #333;
+    cursor: not-allowed;
+}
+
+/* Additional Styles */
+h2 {
+    margin-top: 15px;
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
+}
+
+p {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Media Query for Mobile */
+@media (max-width: 600px) {
+    form {
+        padding: 10px;
+    }
+}
+
+
+
+
+JS
+
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('bookingForm');
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Get values from the form fields
+        const roomRate = document.getElementById('roomType').value === 'Delux Room' ? 2500 : 4000;
+        const amenities = Array.from(document.getElementById('amenities').options)
+            .filter(option => option.selected)
+            .map(option => option.value);
+        const amenitiesCost = amenities.reduce((total, amenity) => {
+            if (amenity === 'AC') return total + 1000;
+            if (amenity === 'Locker') return total + 300;
+            return total;
+        }, 0);
+        const totalDays = parseInt(document.getElementById('totalDays').value);
+        const advanceAmount = parseInt(document.getElementById('advanceAmount').value);
+        const extraPersonCost = parseInt(document.getElementById('extraPersonCost').value);
+        const totalPersons = parseInt(document.getElementById('totalPersons').value);
+
+        // Calculate total room cost and total amenities cost
+        const totalRoomCost = roomRate * totalDays;
+        const totalAmenitiesCost = amenitiesCost * totalDays;
+
+        // Calculate total cost
+        const totalCost = totalRoomCost + totalAmenitiesCost + (extraPersonCost * (totalPersons - 2) * totalDays);
+
+        // Calculate balance
+        const balance = totalCost - advanceAmount;
+
+        // Set the calculated values in the form fields
+        document.getElementById('totalRoomCost').value = totalRoomCost + "/-";
+        document.getElementById('totalAmenitiesCost').value = totalAmenitiesCost + "/-";
+        document.getElementById('balance').value = balance + "/-";
+        document.getElementById('totalCost').value = totalCost + "/-";
+    });
+});
